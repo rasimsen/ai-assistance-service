@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas       = ["conv"]
+}
+
+enum ConversationType {
+  VOICE
+  TEXT
+  
+  @@schema("conv")
+}
+
+enum Channel {
+  TWILIO
+  TELEGRAM
+  WEB
+  WHATSAPP
+
+  @@schema("conv")
+}
+
+enum Direction {
+  CUSTOMER
+  COMPANY
+
+  @@schema("conv")
+}
+
+model Conversation {
+  id                   String           @id @default(uuid())
+  startedAt            DateTime
+  endedAt              DateTime?
+  durationSeconds      Int?
+  conversation          String
+  conversationType     ConversationType
+  conversationVoiceUrl String?
+  direction            Direction
+  channelUserId        String?
+  displayName          String?
+  displayPhotoUrl      String?
+  channel              Channel
+  externalId           String?          @unique
+  metadata             Json?
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  @@index([channel, channelUserId])
+  @@index([startedAt])
+  @@schema("conv")
+}
