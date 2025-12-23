@@ -235,6 +235,15 @@ http://localhost:3000/docs
 
 ---
 
+## 📘 Vibe Coding Practice
+
+This project includes a real-world AI-assisted development archive
+covering architecture, debugging, and production decisions:
+
+→ documentations/ai-conversations-service-full.html
+
+---
+
 ## 📄 License
 
 MIT (or your preferred license)
